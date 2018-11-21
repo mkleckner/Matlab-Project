@@ -21,23 +21,31 @@ tab_neighv_names = string(tab_neighv(:,1)); %pulling out neighborhoods and putti
 tab_neighc_names = string(tab_neighc(:,1));
 
 ismem_data = ismember(tab_neighv_names,tab_neighc_names);   % making logical array comparing neighborhoods crimes and vacancy data (true if found in both)
-for i=1:219     % deleting any values from tab_neighv_names that are not in tab_neighc_names
+for i=1:219     % NaN for any values from tab_neighv that are not in tab_neighv_names and tab_neighc_names
+    x=ismem_data(i,1);
     x=ismem_data(i,1);
     if x==0
-        tab_neighv_names(i,1)=nan;
+        tab_neighv{i,1} = nan;
+        tab_neighv{i,2} = nan;
+        tab_neighv{i,3} = nan;
     end
 end
 
 ismem_data = ismember(tab_neighc_names,tab_neighv_names);
-for i=1:277     % deleting any values from tab_neighc_names that are not in tab_neighv_names
+for i=1:277     % NaN for any values from tab_neighc that are not in tab_neighv_names and tab_neighc_names
     x=ismem_data(i,1);
     if x==0
-        tab_neighc_names(i,1)=nan;
+        tab_neighc{i,1} = nan;
+        tab_neighc{i,2} = nan;
+        tab_neighc{i,3} = nan;
     end
 end
 
 clear x i ismem_data
 
 % remove missing values from matrices left over from previous step
-tab_neighc_names = rmmissing(tab_neighc_names);
-tab_neighv_names = rmmissing(tab_neighv_names);
+tab_neighc(any(cellfun(@(i) any(isnan(i)),tab_neighc),2),:) = [];
+tab_neighv(any(cellfun(@(i) any(isnan(i)),tab_neighv),2),:) = [];
+
+% export variables for later use
+save('Project', 'tab_neighc', 'tab_neighv');
