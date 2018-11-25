@@ -121,19 +121,45 @@ if num1 == 1    % running the proper pie chart depending on gui option
     end
 end
 if num2 == 1
-    run('scatter');
+    run('Scatter');
 end
 if num3 == 1
-    run('histogram');
+    run('Histogram');
 end
 if num4 == 1
-    run('bar');
+    run('Bar');
 end
 if num5 == 1
-    run('box');
+    run('Box');
 end
 if num6 == 1
-    
+    if num1 == 1    % running the proper pie chart depending on gui option
+        if num7 == 1
+            if num8 ==1
+                saveas('Pie_3d_exploded.jpg');
+            else
+                run('Pie_3d');
+            end
+        else
+            if num8 == 1
+                run('Pie_2d_exploded');
+            else
+                run('Pie_2d');
+            end
+        end
+    end
+    if num2 == 1
+        run('Scatter');
+    end
+    if num3 == 1
+        run('Histogram');
+    end
+    if num4 == 1
+        run('Bar');
+    end
+    if num5 == 1
+        run('Box');
+    end
 end
 end
     

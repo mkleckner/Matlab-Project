@@ -47,5 +47,9 @@ clear x i ismem_data
 tab_neighc(any(cellfun(@(i) any(isnan(i)),tab_neighc),2),:) = [];
 tab_neighv(any(cellfun(@(i) any(isnan(i)),tab_neighv),2),:) = [];
 
+% alphabetize
+tab_neighc = sortrows(tab_neighc);
+tab_neighv = sortrows(tab_neighv);
+
 % export variables for later use
 save('Project', 'tab_neighc', 'tab_neighv');
