@@ -51,14 +51,5 @@ tab_neighv(any(cellfun(@(i) any(isnan(i)),tab_neighv),2),:) = [];
 tab_neighc = sortrows(tab_neighc);
 tab_neighv = sortrows(tab_neighv);
 
-% splitting latitude and longitude in datav for later use
-datavlatlong = split(datav(:,3),', ');
-datavlatlong(:,1) = strip(datavlatlong(:,1),'left','(');
-datavlatlong(:,2) = strip(datavlatlong(:,2),'right',')');
-datav(:,3) = datavlatlong(:,1);
-datav(:,4) = datavlatlong(:,2);
-
-clear datavlatlong
-
 % export variables for later use
-save('Project', 'tab_neighc', 'tab_neighv','datav','datac');
+save('Project', 'tab_neighc', 'tab_neighv');
